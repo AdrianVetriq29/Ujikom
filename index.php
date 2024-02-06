@@ -189,19 +189,6 @@ table.table .avatar {
 	box-sizing: border-box;
 	z-index: 2;
 }
-/*.custom-checkbox input[type="checkbox"]:checked + label:after {
-	content: '';
-	position: absolute;
-	left: 6px;
-	top: 3px;
-	width: 6px;
-	height: 11px;
-	border: solid #000;
-	border-width: 0 3px 3px 0;
-	transform: inherit;
-	z-index: 3;
-	transform: rotateZ(45deg);
-}*/
 .custom-checkbox input[type="checkbox"]:checked + label:before {
 	border-color: #03A9F4;
 	background: #03A9F4;
@@ -248,12 +235,6 @@ table.table .avatar {
 .modal form label {
 	font-weight: normal;
 }
-/*.crud{
-	position: relative;
-	left: 40rem;
-	top: 10px;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}*/
 .admin {
 	padding-top: 30px;
 	padding-left: 25px;
@@ -263,31 +244,6 @@ table.table .avatar {
 	font-weight: bold;
 }
 </style>
-<!-- <script>
-$(document).ready(function(){
-	// Activate tooltip
-	$('[data-toggle="tooltip"]').tooltip();
-	
-	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;                        
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;                        
-			});
-		} 
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
-});
-</script> -->
 </head>
 <body>
 	<div class="navbarats">
@@ -358,14 +314,8 @@ $(document).ready(function(){
 						<?php echo $result['merk']; ?>
 					</td>
 					<td>
-						<?php echo $result['keterangan']; ?>
+						<img src="gambar/<?php echo $result['keterangan'];?>" width="70" height="70">
 					</td>
-			
-			
-					<!-- <td>
-						<a href="update.php?id=<?php echo $result['id']; ?>" class="edit"><i class="material-icons" data-toggle="tooltip" title="Update">&#xE254;</i></a>
-						<a href="delete.php?ids=<?php echo $result['id']; ?>" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-					</td> -->
 				</tr>
 				<?php
 				$i++;
@@ -375,11 +325,12 @@ $(document).ready(function(){
 			</table>
 	</div>        
 </div>
+
 <!-- Tambah Kendaraan -->
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="POST" action="insert.php" >
+			<form method="POST" action="insert.php" enctype="multipart/form-data">
 				<div class="modal-header">						
 					<h4 class="modal-title">Masukkan Data Kendaraan</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -396,7 +347,7 @@ $(document).ready(function(){
 							<option value="yamaha">Yamaha</option>
 							<option value="suzuki">Suzuki</option>
 							<option value="kawasaki">Kawasaki</option>
-							<option value="opsi_lainnya">Opsi Lainnya</option>
+							<option value="opsi_lainnya">Lainnya</option>
                   		</select>
 					</div>
 					<div class="form-group">
@@ -405,7 +356,7 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<label>Upload_gambar</label>
-						<input type="file" name="keterangan" id="keterangan">
+						<input type="file" name="keterangan" id="keterangan" required>
 					</div>					
 				</div>
 				<div class="modal-footer">
@@ -417,43 +368,6 @@ $(document).ready(function(){
 	</div>
 </div>
 
-
-
-<!-- Update Modal HTML -->
-<!-- <div id="editEmployeeModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
-					<h4 class="modal-title">Update Data</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Address</label>
-						<textarea class="form-control" required></textarea>
-					</div>
-					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" required>
-					</div>					
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
-				</div>
-			</form>
-		</div>
-	</div>
-</div> -->
 <!-- Keluar Kendaraan -->
 <div id="deleteEmployeeModal" class="modal fade">
 	<div class="modal-dialog">

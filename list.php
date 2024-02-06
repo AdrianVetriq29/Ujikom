@@ -177,19 +177,6 @@ table.table .avatar {
 	box-sizing: border-box;
 	z-index: 2;
 }
-/*.custom-checkbox input[type="checkbox"]:checked + label:after {
-	content: '';
-	position: absolute;
-	left: 6px;
-	top: 3px;
-	width: 6px;
-	height: 11px;
-	border: solid #000;
-	border-width: 0 3px 3px 0;
-	transform: inherit;
-	z-index: 3;
-	transform: rotateZ(45deg);
-}*/
 .custom-checkbox input[type="checkbox"]:checked + label:before {
 	border-color: #03A9F4;
 	background: #03A9F4;
@@ -236,12 +223,6 @@ table.table .avatar {
 .modal form label {
 	font-weight: normal;
 }
-/*.crud{
-	position: relative;
-	left: 40rem;
-	top: 10px;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}*/
 .admin {
 	padding-top: 30px;
 	padding-left: 25px;
@@ -251,31 +232,6 @@ table.table .avatar {
 	font-weight: bold;
 }
 </style>
-<!-- <script>
-$(document).ready(function(){
-	// Activate tooltip
-	$('[data-toggle="tooltip"]').tooltip();
-	
-	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;                        
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;                        
-			});
-		} 
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
-});
-</script> -->
 </head>
 <body>
 	<div class="navbarats">
@@ -303,10 +259,6 @@ $(document).ready(function(){
 					<div class="col-sm-6">
 						<h2>Parkirin <b>Aja</b></h2>
 					</div>
-					<!-- <div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Kendaraan Masuk</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Kendaraan Keluar</span></a>						
-					</div> -->
 				</div>
 			</div>
 			
@@ -346,14 +298,8 @@ $(document).ready(function(){
 						<?php echo $result['merk']; ?>
 					</td>
 					<td>
-						<?php echo $result['keterangan']; ?>
+						<img src="gambar/<?php echo $result['keterangan'];?>" width="100" height="100">
 					</td>
-			
-			
-					<!-- <td>
-						<a href="update.php?id=<?php echo $result['id']; ?>" class="edit"><i class="material-icons" data-toggle="tooltip" title="Update">&#xE254;</i></a>
-						<a href="delete.php?ids=<?php echo $result['id']; ?>" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-					</td> -->
 				</tr>
 				<?php
 				$i++;

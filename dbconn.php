@@ -12,5 +12,4 @@ echo '';
     echo 'Not Connected';
 }
 
-
 ?>

@@ -5,7 +5,9 @@ if(isset($_POST['tambah'])){
     $plat_no = mysqli_real_escape_string($conn, $_POST['plat_no']);
     $jam_masuk = mysqli_real_escape_string($conn, $_POST['jam_masuk']);
     $merk = mysqli_real_escape_string($conn, $_POST['merk']);
-    $keterangan = mysqli_real_escape_string($conn, $_POST['keterangan']);
+
+    $namaFile = $_FILES['keterangan']['name'];
+    $tmpFile = $_FILES['keterangan']['tmp_name'];
 
     $ceksql = "SELECT * FROM k_masuk WHERE plat_no = '$plat_no'";
     $cekdata = mysqli_query($conn, $ceksql);
@@ -14,8 +16,9 @@ if(isset($_POST['tambah'])){
 
     if ($cek == 0) {
       $insertquery =  "INSERT INTO k_masuk(plat_no, jam_masuk, merk, keterangan)
-                     VALUES ('$plat_no',NOW(),'$merk','$keterangan')";
+                     VALUES ('$plat_no',NOW(),'$merk','$namaFile')";
         $mysqliquery = mysqli_query($conn, $insertquery);
+        move_uploaded_file($tmpFile, "gambar/$namaFile");
         if($insertquery){
             ?>
         <script>
@@ -32,4 +35,5 @@ if(isset($_POST['tambah'])){
     }
 
 }
+
 ?>
