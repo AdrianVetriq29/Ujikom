@@ -1,5 +1,8 @@
  <?php
+// Menghubungkan dengan dbconn
 include 'dbconn.php';
+
+// Fungsi button keluar kendaraan
 if(isset($_POST['keluar'])){
 
     $plat_no = mysqli_real_escape_string($conn, $_POST['plat_no']);
@@ -11,6 +14,7 @@ if(isset($_POST['keluar'])){
       $deletequery = "DELETE FROM k_masuk WHERE plat_no = '$plat_no'";
       $mysqliquery = mysqli_query($conn, $deletequery);
 
+    // Cek Apakah data berhasil keluar
     if($keluarquery){
         ?>
     <script>

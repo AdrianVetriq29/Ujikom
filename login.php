@@ -1,20 +1,22 @@
 <?php 
-//mengaktifkan session php
+// Mengaktifkan session php
 session_start();
  
-//menghubungkan dengan koneksi
+// Menghubungkan dengan dbconn
 include 'dbconn.php';
+
+// Fungsi button Login
 if (isset($_SESSION['login'])) {
 	header("location: index.php");
 	exit;
 }
  
-// menangkap data yang dikirim dari form
+// Menangkap data yang dikirim dari form
 if (isset($_POST["login"])) {
 	$username = $_POST['username'];
 	$password = $_POST['password'];
  
-	// menyeleksi data admin dengan username dan password yang sesuai
+	// Menyeleksi data admin dengan username dan password yang sesuai
 	$data = mysqli_query($conn,"SELECT * from users where username='$username'");
 	if (mysqli_num_rows($data) === 1) {
 		$row = mysqli_fetch_assoc($data);

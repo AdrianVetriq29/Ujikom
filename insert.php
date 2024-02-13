@@ -1,5 +1,8 @@
 <?php
+// Menghubungkan dengan dbconn
 include 'dbconn.php';
+
+// Fungsi button tambah
 if(isset($_POST['tambah'])){
 
     $plat_no = mysqli_real_escape_string($conn, $_POST['plat_no']);
@@ -14,6 +17,7 @@ if(isset($_POST['tambah'])){
 
     $cek = mysqli_num_rows($cekdata);
 
+    // Cek Apakah data berhasil di tambahkan
     if ($cek == 0) {
       $insertquery =  "INSERT INTO k_masuk(plat_no, jam_masuk, merk, keterangan)
                      VALUES ('$plat_no',NOW(),'$merk','$namaFile')";
