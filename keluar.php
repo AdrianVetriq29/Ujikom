@@ -21,10 +21,17 @@ if(isset($_POST['keluar'])){
         window.location.replace("index.php");
     </script>
 
+
+
 <?php 
 
     }else{
-        echo 'Not Inserted';
+        ?>
+    <script type="text/javascript">
+        alert("Data Tidak Tersedia!");
+        window.location.replace("index.php");
+    </script>
+    <?php
     }
 
 

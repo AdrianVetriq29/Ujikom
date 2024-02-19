@@ -34,6 +34,7 @@ if (isset($_POST["login"])) {
 
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,6 +47,11 @@ if (isset($_POST["login"])) {
   <div class="container">
     <form method="post" class="login-form" action="">
       <h1>ParkirinAja</h1>
+      <?php if (isset($error)): ?>
+      <div class="alert alert-danger" role="alert">
+         Username atau Password tidak valid
+      </div>
+      <?php endif ?>
       <div class="input-box">
         <input type="text" name="username" placeholder="Username"
         required />

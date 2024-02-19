@@ -10,6 +10,25 @@ if (!isset($_SESSION["login"])) {
 	header("location: login.php");
 	exit;
 }
+
+// Fungsi Pencarian
+function cari($keyword) {
+	global $conn;
+    $query = "SELECT * FROM k_masuk WHERE plat_no LIKE '%$keyword%' OR merk LIKE '%$keyword%'";
+    return mysqli_query($conn, $query);
+}
+
+$query = 'SELECT * FROM k_masuk';
+$mysqliquery = mysqli_query($conn, $query);
+
+if (isset($_POST["btncari"])){
+	$mysqliquery = cari($_POST['keyword']);
+}
+        
+
+?>
+<?php
+$merkmotor = ['Honda', 'Yamaha', 'Suzuki', 'Kawasaki', 'Lainnya'];
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +73,12 @@ if (!isset($_SESSION["login"])) {
 	</div>
 
 <!-- Table Kendaraan Masuk -->
+<form method="post" action="">
+	<div class="pencarian">
+		<input type="text" name="keyword" size="40" autofocus placeholder="Masukkan Keyword Pencarian.." autocomplete="off">
+		<button type="submit" name="btncari">cari</button>
+	</div>
+</form>
 <div class="container-xl">
 	<div class="table-responsive">
 		<div class="table-wrapper">
@@ -83,8 +108,7 @@ if (!isset($_SESSION["login"])) {
 			<?php
 			include 'dbconn.php';
 			$i = 1;
-			$query = 'SELECT * FROM k_masuk';
-			$mysqliquery = mysqli_query($conn, $query);
+			// Perulangan while
 			while ($result = mysqli_fetch_assoc($mysqliquery)) {
 				?>
 				<tr>
@@ -130,12 +154,12 @@ if (!isset($_SESSION["login"])) {
 					<div class="form-group">
 						<label>Merk</label>
 						<select name="merk">
-							<option value="honda">Honda</option>
-							<option value="yamaha">Yamaha</option>
-							<option value="suzuki">Suzuki</option>
-							<option value="kawasaki">Kawasaki</option>
-							<option value="opsi_lainnya">Lainnya</option>
-                  		</select>
+							<option value="<?php echo $merkmotor[0];?>"><?php echo $merkmotor[0];?></option>
+							<option value="<?php echo $merkmotor[1];?>"><?php echo $merkmotor[1];?></option>
+							<option value="<?php echo $merkmotor[2];?>"><?php echo $merkmotor[2];?></option>
+							<option value="<?php echo $merkmotor[3];?>"><?php echo $merkmotor[3];?></option>
+							<option value="<?php echo $merkmotor[4];?>"><?php echo $merkmotor[4];?></option>
+                  				</select>
 					</div>
 					<div class="form-group">
 						<label>Jam_masuk</label>

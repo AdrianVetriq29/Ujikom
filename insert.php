@@ -25,7 +25,8 @@ if(isset($_POST['tambah'])){
         move_uploaded_file($tmpFile, "gambar/$namaFile");
         if($insertquery){
             ?>
-        <script>
+        <script type="text/javascript">
+            alert("Data Berhasil Ditambahkan!");
             window.location.replace("index.php");
         </script>
 
@@ -35,7 +36,12 @@ if(isset($_POST['tambah'])){
             echo 'Not Inserted';
         }
     } else {
-        echo "Data Sudah Tersedia";
+?>
+<script type="text/javascript">
+    alert("Data Sudah Tersedia!");
+    window.location='index.php';
+</script>
+<?php
     }
 
 }

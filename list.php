@@ -1,3 +1,20 @@
+<?php
+include "dbconn.php";
+
+// Fungsi Pencarian
+function cari($keyword) {
+	global $conn;
+    $query = "SELECT * FROM k_keluar WHERE plat_no LIKE '%$keyword%' OR merk LIKE '%$keyword%'";
+    return mysqli_query($conn, $query);
+}
+
+$query = 'SELECT * FROM k_keluar';
+$mysqliquery = mysqli_query($conn, $query);
+
+if (isset($_POST["btncari"])){
+	$mysqliquery = cari($_POST['keyword']);
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +31,20 @@
 	<title>Daftar Kendaraan</title>
 </head>
 <body>
-
 <!-- Navbar -->
 	<div class="navbarats">
 		<div class="admin">
 			Daftar Kendaraan 
 		</div>
-		<div class="btnlogout">
+		<div class="btnback">
 			<div class="d-flex flex-row-reverse">
 				<div class="p-2">
 					<br>
 					<a name="back" class="btn btn-danger" href="index.php">Back</a>
+				</div>
+				<div class="p-2">
+					<br>
+					<a href="report.php" name="print" class="btn btn-success" target="_blank">Print</a>
 				</div>
 			</div>
 		</div>
@@ -34,6 +54,12 @@
 	</div>
 
 <!-- Table Daftar Kendaraan -->
+<form method="post" action="">
+	<div class="pencarian">
+		<input type="text" name="keyword" size="40" autofocus placeholder="Masukkan Keyword Pencarian.." autocomplete="off">
+		<button type="submit" name="btncari">cari</button>
+	</div>
+</form>
 <div class="container-xl">
 	<div class="table-responsive">
 		<div class="table-wrapper">
@@ -64,8 +90,6 @@
 
 			// Kendaraan yang sudah keluar akan muncul di table ini
 			$i = 1;
-			$query = 'SELECT * FROM k_keluar';
-			$mysqliquery = mysqli_query($conn, $query);
 			while ($result = mysqli_fetch_assoc($mysqliquery)) {
 				?>
 				<tr>
